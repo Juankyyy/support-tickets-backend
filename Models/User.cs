@@ -17,6 +17,6 @@ namespace SupportTickets.Models
         public string Role { get; set; }
 
         [JsonIgnore]
-        public List<Ticket> Tickets { get; set; }
+        public List<Ticket>? Tickets { get; set; }
     }
 }

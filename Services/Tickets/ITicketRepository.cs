@@ -7,5 +7,6 @@ namespace SupportTickets.Services
         public IEnumerable<Ticket> GetAll();
         public Ticket GetById(int id);
         public void Assignment(int ticketId, int userId);
+        public void Create(Ticket ticket);
     }
 }

@@ -32,5 +32,11 @@ namespace SupportTickets.Services
             _context.Tickets.Update(ticket);
             _context.SaveChanges();
         }
+
+        public void Create(Ticket ticket)
+        {
+            _context.Tickets.Add(ticket);
+            _context.SaveChanges();
+        }
     }
 }

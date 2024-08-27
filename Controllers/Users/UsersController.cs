@@ -28,5 +28,25 @@ namespace SupportTickets.Controllers
                 return StatusCode(500, $"Error al obtener los usuarios: {ex.Message}");
             }
         }
+
+        [HttpGet("{id}")]
+        public IActionResult GetUser(int id)
+        {
+            try 
+            {
+                var user = _userRepository.GetById(id);
+
+                if (user == null)
+                {
+                    return NotFound($"Usuario {id} no encontrado");
+                }
+
+                return Ok(user);
+
+            } catch (Exception ex)
+            {
+                return StatusCode(500, $"Error al obtener el usuario {id}: {ex.Message}");
+            }
+        }
     }
 }

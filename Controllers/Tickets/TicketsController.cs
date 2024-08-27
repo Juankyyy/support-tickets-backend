@@ -28,5 +28,25 @@ namespace SupportTickets.Controllers
                 return StatusCode(500, $"Error al obtener los tickets: {ex.Message}");
             }
         }
+
+        [HttpGet("{id}")]
+        public IActionResult GetTicket(int id)
+        {
+            try 
+            {
+                var ticket = _ticketRepository.GetById(id);
+
+                if (ticket == null)
+                {
+                    return NotFound($"Ticket {id} no encontrado");
+                }
+
+                return Ok(ticket);
+
+            } catch (Exception ex)
+            {
+                return StatusCode(500, $"Error al obtener el ticket {id}: {ex.Message}");
+            }
+        }
     }
 }

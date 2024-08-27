@@ -21,6 +21,7 @@ builder.Services.AddDbContext<SupportTicketsContext>(options =>
 
 // Scopes de los servicios
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<ITicketRepository, TicketRepository>();
 
 var app = builder.Build();
 

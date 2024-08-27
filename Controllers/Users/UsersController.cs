@@ -4,13 +4,13 @@ using SupportTickets.Services;
 namespace SupportTickets.Controllers
 {
     [ApiController]
-    [Route("api/users")]
+    [Route("api/[controller]")]
 
-    public class UsersControllers : ControllerBase
+    public class UsersController : ControllerBase
     {
         private readonly IUserRepository _userRepository;
 
-        public UsersControllers(IUserRepository userRepository)
+        public UsersController(IUserRepository userRepository)
         {
             _userRepository = userRepository;
         }

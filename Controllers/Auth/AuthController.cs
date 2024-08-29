@@ -22,11 +22,16 @@ namespace SupportTickets.Controllers
         {
             try 
             {
-                var user = _userRepository.Auth(userLogin);
+                var user = _userRepository.VerifyEmail(userLogin);
 
                 if (user == null)
                 {
-                    return Unauthorized("Usuario no encontrado");
+                    return Unauthorized(new { error = "Email incorrecto" });
+                }
+
+                if (user.Password != userLogin.Password)
+                {
+                    return Unauthorized(new { error = "Password incorrecta" });
                 }
 
                 return Ok(user);

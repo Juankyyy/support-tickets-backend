@@ -7,6 +7,6 @@ namespace SupportTickets.Services
     {
         public IEnumerable<User> GetAll();
         public User GetById(int id);
-        public User Auth(LoginDTO userLogin);
+        public User VerifyEmail(LoginDTO userLogin);
     }
 }

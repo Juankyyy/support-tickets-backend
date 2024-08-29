@@ -1,3 +1,4 @@
+using SupportTickets.Dtos;
 using SupportTickets.Models;
 
 namespace SupportTickets.Services
@@ -6,5 +7,6 @@ namespace SupportTickets.Services
     {
         public IEnumerable<User> GetAll();
         public User GetById(int id);
+        public User Auth(LoginDTO userLogin);
     }
 }

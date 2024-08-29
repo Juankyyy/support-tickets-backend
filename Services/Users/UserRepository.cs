@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using SupportTickets.Data;
+using SupportTickets.Dtos;
 using SupportTickets.Models;
 
 namespace SupportTickets.Services
@@ -21,6 +22,13 @@ namespace SupportTickets.Services
         public User GetById(int id)
         {
             return _context.Users.Find(id);
+        }
+
+        public User Auth(LoginDTO userLogin)
+        {
+            var user = _context.Users.FirstOrDefault(u => u.Email == userLogin.Email && u.Password == userLogin.Password);
+
+            return user;
         }
     }
 }

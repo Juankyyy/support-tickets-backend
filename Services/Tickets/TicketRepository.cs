@@ -18,6 +18,11 @@ namespace SupportTickets.Services
             return _context.Tickets.Include(t => t.Assignee).Include(t => t.Reporter).ToList();
         }
 
+        public IEnumerable<Ticket> GetByUser(int id)
+        {
+            return _context.Tickets.Include(t => t.Assignee).Include(t => t.Reporter).Where(t => t.ReporterId == id).ToList();
+        }
+
         public Ticket GetById(int id)
         {
             return _context.Tickets.Include(t => t.Assignee).Include(t => t.Reporter).FirstOrDefault(t => t.Id == id);

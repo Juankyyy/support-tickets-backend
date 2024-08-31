@@ -8,5 +8,6 @@ namespace SupportTickets.Services
         public IEnumerable<User> GetAll();
         public User GetById(int id);
         public User VerifyEmail(LoginDTO userLogin);
+        public void Create(User user);
     }
 }

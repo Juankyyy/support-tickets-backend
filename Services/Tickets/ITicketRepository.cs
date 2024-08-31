@@ -12,5 +12,6 @@ namespace SupportTickets.Services
         public IEnumerable<Ticket> GetBySupport(int id);
         public IEnumerable<Ticket> GetByUser(int id);
         public IEnumerable<Ticket> GetSolvedTicketsBySupport(int id);
+        public IEnumerable<Ticket> GetUnsolvedTicketsBySupport(int id);
     }
 }

@@ -59,5 +59,10 @@ namespace SupportTickets.Services
         {
             return _context.Tickets.Include(t => t.Assignee).Include(t => t.Reporter).Where(t => t.AssigneeId == id && t.Status == "Solved").ToList();
         }
+
+        public IEnumerable<Ticket> GetUnsolvedTicketsBySupport(int id)
+        {
+            return _context.Tickets.Include(t => t.Assignee).Include(t => t.Reporter).Where(t => t.AssigneeId == id && t.Status == "Unsolved").ToList();
+        }
     }
 }

@@ -108,5 +108,25 @@ namespace SupportTickets.Controllers
                 return StatusCode(500, $"Error al obtener los tickets resueltos del soporte {id}: {ex.Message}");
             }
         }
+
+        [HttpGet("support/{id}/unsolved")]
+        public IActionResult GetUnsolvedTicketsBySupport(int id)
+        {
+            try 
+            {
+                var tickets = _ticketRepository.GetUnsolvedTicketsBySupport(id);
+
+                if (tickets.Count() == 0)
+                {
+                    return NotFound($"No se encontraron tickets sin resolver del soporte {id}");
+                }
+
+                return Ok(tickets);
+
+            } catch (Exception ex)
+            {
+                return StatusCode(500, $"Error al obtener los tickets sin resolver del soporte {id}: {ex.Message}");
+            }
+        }
     }
 }

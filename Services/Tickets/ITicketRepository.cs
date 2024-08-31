@@ -9,6 +9,7 @@ namespace SupportTickets.Services
         public void Create(Ticket ticket);
         public void Update(Ticket ticket);
         public void Assignment(int ticketId, int userId);
+        public void SolvedTicket(Ticket ticket);
         public IEnumerable<Ticket> GetBySupport(int id);
         public IEnumerable<Ticket> GetByUser(int id);
         public IEnumerable<Ticket> GetSolvedTicketsBySupport(int id);

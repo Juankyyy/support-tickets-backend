@@ -18,29 +18,9 @@ namespace SupportTickets.Services
             return _context.Tickets.Include(t => t.Assignee).Include(t => t.Reporter).ToList();
         }
 
-        public IEnumerable<Ticket> GetByUser(int id)
-        {
-            return _context.Tickets.Include(t => t.Assignee).Include(t => t.Reporter).Where(t => t.ReporterId == id).ToList();
-        }
-
-        public IEnumerable<Ticket> GetBySupport(int id)
-        {
-            return _context.Tickets.Include(t => t.Assignee).Include(t => t.Reporter).Where(t => t.AssigneeId == id).ToList();
-        }
-
         public Ticket GetById(int id)
         {
             return _context.Tickets.Include(t => t.Assignee).Include(t => t.Reporter).FirstOrDefault(t => t.Id == id);
-        }
-
-        public void Assignment(int ticketId, int userId)
-        {
-            var ticket = _context.Tickets.Find(ticketId);
-
-            ticket.AssigneeId = userId;
-
-            _context.Tickets.Update(ticket);
-            _context.SaveChanges();
         }
 
         public void Create(Ticket ticket)
@@ -53,6 +33,31 @@ namespace SupportTickets.Services
         {
             _context.Tickets.Update(ticket);
             _context.SaveChanges();
+        }
+
+        public void Assignment(int ticketId, int userId)
+        {
+            var ticket = _context.Tickets.Find(ticketId);
+
+            ticket.AssigneeId = userId;
+
+            _context.Tickets.Update(ticket);
+            _context.SaveChanges();
+        }
+
+        public IEnumerable<Ticket> GetByUser(int id)
+        {
+            return _context.Tickets.Include(t => t.Assignee).Include(t => t.Reporter).Where(t => t.ReporterId == id).ToList();
+        }
+
+        public IEnumerable<Ticket> GetBySupport(int id)
+        {
+            return _context.Tickets.Include(t => t.Assignee).Include(t => t.Reporter).Where(t => t.AssigneeId == id).ToList();
+        }
+
+        public IEnumerable<Ticket> GetSolvedTicketsBySupport(int id)
+        {
+            return _context.Tickets.Include(t => t.Assignee).Include(t => t.Reporter).Where(t => t.AssigneeId == id && t.Status == "Solved").ToList();
         }
     }
 }

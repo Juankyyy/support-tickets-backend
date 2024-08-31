@@ -53,6 +53,15 @@ namespace SupportTickets.Services
             _context.SaveChanges();
         }
 
+        public void UnsolvedTicket(Ticket ticket)
+        {
+            ticket.Status = "Unsolved";
+            ticket.Response = null;
+
+            _context.Tickets.Update(ticket);
+            _context.SaveChanges();
+        }
+
         public IEnumerable<Ticket> GetByUser(int id)
         {
             return _context.Tickets.Include(t => t.Assignee).Include(t => t.Reporter).Where(t => t.ReporterId == id).ToList();

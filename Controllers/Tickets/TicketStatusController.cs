@@ -5,7 +5,6 @@ namespace SupportTickets.Controllers
 {
     [ApiController]
     [Route("api/tickets/status")]
-
     public class TicketStatusController : ControllerBase
     {
         private readonly ITicketRepository _ticketRepository;
@@ -38,6 +37,27 @@ namespace SupportTickets.Controllers
             } catch (Exception ex)
             {
                 return StatusCode(500, $"Error al resolver el ticket {id}: {ex.Message}");
+            }
+        }
+
+        [HttpPut("unsolved/{id}")]
+        public IActionResult UnsolvedTicket(int id)
+        {
+            try 
+            {
+                var ticket = _ticketRepository.GetById(id);
+
+                if (ticket == null)
+                {
+                    return NotFound($"Ticket {id} no encontrado");
+                }
+
+                _ticketRepository.UnsolvedTicket(ticket);
+                return Ok($"Ticket {id} sin resolver");
+
+            } catch (Exception ex)
+            {
+                return StatusCode(500, $"Error al deshacer el ticket resuelto {id}: {ex.Message}");
             }
         }
     }

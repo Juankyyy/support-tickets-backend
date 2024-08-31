@@ -12,6 +12,11 @@ namespace SupportTickets.Models
         [Required]
         public string Description { get; set; }
         
+        public string? Response { get; set; }
+        
+        [Required]
+        public string Status { get; set; }
+        
         public int? AssigneeId { get; set; }
         public User? Assignee { get; set; }
         

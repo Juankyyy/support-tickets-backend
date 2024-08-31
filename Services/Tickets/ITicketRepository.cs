@@ -9,5 +9,6 @@ namespace SupportTickets.Services
         public Ticket GetById(int id);
         public void Assignment(int ticketId, int userId);
         public void Create(Ticket ticket);
+        public void Update(Ticket ticket);
     }
 }

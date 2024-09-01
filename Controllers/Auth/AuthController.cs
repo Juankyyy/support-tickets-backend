@@ -22,7 +22,7 @@ namespace SupportTickets.Controllers
         {
             try 
             {
-                var user = _userRepository.VerifyEmail(userLogin);
+                var user = _userRepository.VerifyEmailLogin(userLogin);
 
                 if (user == null)
                 {

@@ -26,6 +26,12 @@ namespace SupportTickets.Controllers
                     return BadRequest("No puede haber datos nulos");
                 }
 
+                var emailExists = _userRepository.VerifyEmailSignup(user);
+                if (emailExists != null)
+                {
+                    return BadRequest(new { error = "Email en uso"});
+                }
+
                 _userRepository.Create(user);
 
                 return Ok("Usuario creado correctamente");

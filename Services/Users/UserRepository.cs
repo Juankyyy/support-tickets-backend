@@ -24,7 +24,14 @@ namespace SupportTickets.Services
             return _context.Users.Find(id);
         }
 
-        public User VerifyEmail(LoginDTO userLogin)
+        public User VerifyEmailSignup(User user)
+        {
+            var userExists = _context.Users.FirstOrDefault(u => u.Email == user.Email);
+
+            return userExists;
+        }
+
+        public User VerifyEmailLogin(LoginDTO userLogin)
         {
             var user = _context.Users.FirstOrDefault(u => u.Email == userLogin.Email);
 

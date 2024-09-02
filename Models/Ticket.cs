@@ -12,6 +12,9 @@ namespace SupportTickets.Models
         [Required]
         public string Description { get; set; }
         
+        [Required]
+        public string Category { get; set; }
+        
         public string? Response { get; set; }
         
         [Required]
